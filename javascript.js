@@ -1,6 +1,8 @@
 $(document).ready(function () {
       var opcion = 9; //envia la opcion al backend para aplicar un switch
       var fila; //captura en que fila se hara la edicion o eliminacion
+      var c;
+      var v;
 
       tablaPersonas = $("#tablaDatos").DataTable({
             "columnDefs": [{
@@ -31,10 +33,26 @@ $(document).ready(function () {
      
       $("#btnCalcular").click(function () {
             opcion = 1;
+
+            $.post("backend.php", {opcion: opcion}, function(resultado){
+                  a = resultado.split("/");
+                  c= a[0];
+                  v= a[1];
+                  $("#cae").html(c);
+                  $("#valor").html(v);
+            });
+
+      
       });
 
       $("#btnGuardar").click(function () {
-            opcion = 2;
+            if(nombreProducto!="[object HTMLInputElement]" && tienda!="[object HTMLInputElement]" && PrecioAlContado!="[object HTMLInputElement]" && valorCuotaMensual!="[object HTMLInputElement]" && cuotas!="[object HTMLInputElement]" && c!="undefined" && v!="undefined"){
+                  opcion = 2;
+                  location.reload();
+            } else {
+                  alert("Faltan datos para guardar en la base de datos");
+            }
+            
       });
 
 
@@ -60,6 +78,8 @@ $(document).ready(function () {
                   });
             }
 
+            location.reload();
+
       });
 
 
@@ -84,7 +104,9 @@ $(document).ready(function () {
                         PrecioAlContado: PrecioAlContado,
                         valorCuotaMensual: valorCuotaMensual,
                         cuotas: cuotas,
-                        opcion: opcion
+                        opcion: opcion,
+                        c: c,
+                        v: v
                   },
                   success: function (data) {
                         //var datos = JSON.parse(data);
