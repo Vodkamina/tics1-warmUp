@@ -12,17 +12,17 @@ $cuotas = (isset($_POST["cuotas"])) ? $_POST["cuotas"] : "";
 $valorCuotaMensual = (isset($_POST["valorCuotaMensual"])) ? $_POST["valorCuotaMensual"] : "";
 $PrecioAlContado = (isset($_POST["PrecioAlContado"])) ? $_POST["PrecioAlContado"] : "";
 $opcion = (isset($_POST["opcion"])) ? $_POST["opcion"] : "";
+$CAE =  (isset($_POST["c"])) ? $_POST["c"] : "";
+$costoTotal = (isset($_POST["v"])) ? $_POST["v"] : "";
 
 //FALTAN CALCULOS PARA AGREGAR A LA BD: CAE y costoTotal con sus correctos valores.
-
-$costoTotal = 1; 
-$CAE =1;
 
 
 switch($opcion){
 
       case 1: //calcular
-
+            $costoTotal= 20;
+            $CAE = 11;
             break;
       case 2: //insertar
             $query = "INSERT INTO tabla_datos (nombreProducto, tienda,  cuotas, valorCuotaMensual, 
@@ -39,7 +39,9 @@ switch($opcion){
             break;
 }
 
-print json_encode(JSON_UNESCAPED_UNICODE); //devuelve nada al javascript, para actualizar la pagina al tener una respuesta
+echo($CAE."/".$costoTotal);
+
+//print json_encode(JSON_UNESCAPED_UNICODE); //devuelve nada al javascript, para actualizar la pagina al tener una respuesta
                                           //creo que con esta opcion se pueden enviar datos al javascript, pero no se como aun
 $conexion = NULL;
 

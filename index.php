@@ -55,8 +55,8 @@ include_once "conexion.php";
                         <!-- Resutados -->
                         <h3 class="text-center">Resultados</h3>
                         <ul class="list-group" id="resultados">
-                            <li class="list-group-item">Costo total del credito: </li>
-                            <li class="list-group-item">CAE:</li>
+                            <li class="list-group-item">Costo total del credito: <span id="valor"></span></li>
+                            <li class="list-group-item">CAE: <span id="cae"></span></li>
                         </ul>
                         <div id="resultadosbtns">
                             <center><button type="submit" id="btnLimpiar" class="btn btn-danger">Cancelar</button>
@@ -95,6 +95,7 @@ include_once "conexion.php";
                                         $query = "SELECT * from tabla_datos";
                                         $result = mysqli_query($conexion,$query);
                                         foreach($result as $arr){
+                                            
                                     ?>
                                     <tr>
                                         <td><?php echo $arr["id"]; ?></td>
