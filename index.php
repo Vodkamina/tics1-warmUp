@@ -45,7 +45,7 @@ include_once "conexion.php";
                         </div>
                         <div class="form-group">
                             <label for="valorCuotaMensual">Valor cuota mensual</label>
-                            <input type="number" class="form-control" id="valorCuotaMensual" placeholder="" required>
+                            <input type="number" class="form-control" id="valorCuotaMensual" step=".01" placeholder="" required>
                         </div>
                         <div class="form-group">
                             <label for="cuotas">N° de cuotas</label>

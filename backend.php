@@ -1,5 +1,6 @@
 <?php
 include_once "conexion.php";
+include_once "calculo.php";
 
 $conexion = conect();
 
@@ -21,8 +22,13 @@ $costoTotal = (isset($_POST["v"])) ? $_POST["v"] : "";
 switch($opcion){
 
       case 1: //calcular
-            $costoTotal= 20;
-            $CAE = 11;
+            //if($PrecioAlContado != "" && $valorCuotaMensual != "" && $cuotas !=)
+            $costoTotal = calculo($PrecioAlContado,$valorCuotaMensual,$cuotas)["costoTotal"];
+            $CAE = calculo($PrecioAlContado,$valorCuotaMensual,$cuotas)["CAE"];
+            $error = calculo($PrecioAlContado,$valorCuotaMensual,$cuotas)["error"];
+           // $costoTotal= 20;
+           //$CAE = 11;
+
             break;
       case 2: //insertar
             $query = "INSERT INTO tabla_datos (nombreProducto, tienda,  cuotas, valorCuotaMensual, 
@@ -36,10 +42,10 @@ switch($opcion){
             $id = (isset($_POST["id"])) ? $_POST["id"] : "";
             $query = "DELETE FROM tabla_datos WHERE id='$id'";
             $resultado = mysqli_query($conexion,$query);
-            break;
+            break; 
 }
 
-echo($CAE."/".$costoTotal);
+echo($CAE."/".$costoTotal."/".$error);
 
 //print json_encode(JSON_UNESCAPED_UNICODE); //devuelve nada al javascript, para actualizar la pagina al tener una respuesta
                                           //creo que con esta opcion se pueden enviar datos al javascript, pero no se como aun
