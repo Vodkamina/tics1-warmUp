@@ -4,7 +4,6 @@ include_once "calculo.php";
 
 $conexion = conect();
 
-
 //recepcion de los datos enviados mediante POST desde javascript.js
 
 $nombreProducto = (isset($_POST["nombreProducto"])) ? $_POST["nombreProducto"] : "";
@@ -16,18 +15,14 @@ $opcion = (isset($_POST["opcion"])) ? $_POST["opcion"] : "";
 $CAE =  (isset($_POST["c"])) ? $_POST["c"] : "";
 $costoTotal = (isset($_POST["v"])) ? $_POST["v"] : "";
 
-//FALTAN CALCULOS PARA AGREGAR A LA BD: CAE y costoTotal con sus correctos valores.
 
 
 switch($opcion){
 
       case 1: //calcular
-            //if($PrecioAlContado != "" && $valorCuotaMensual != "" && $cuotas !=)
             $costoTotal = calculo($PrecioAlContado,$valorCuotaMensual,$cuotas)["costoTotal"];
             $CAE = calculo($PrecioAlContado,$valorCuotaMensual,$cuotas)["CAE"];
             $error = calculo($PrecioAlContado,$valorCuotaMensual,$cuotas)["error"];
-           // $costoTotal= 20;
-           //$CAE = 11;
 
             break;
       case 2: //insertar
