@@ -42,24 +42,25 @@ $(document).ready(function () {
             if(valorCuotaMensual*cuotas <= PrecioAlContado){
                   alert("El valor de las cuotas multiplicadas por su cantidad no coinciden con el precio al contado");
             }
-            $.post("backend.php", { opcion: opcion, PrecioAlContado: PrecioAlContado, valorCuotaMensual: valorCuotaMensual, cuotas: cuotas}, function(resultado){
-                  a = resultado.split("/");
-                  c= a[0];
-                  v= a[1];
-                  error = a[2];
-                  if(error == 1){
-                        alert("Error en el calculo");
-                  }
-                  else{
-                        //$("#cae").html(c+" %");
-                        c = parseFloat(c);
-                        $("#cae").html(Number(c.toFixed(2)) + " %");
-                        
-                        $("#valor").html(" $ "+v);
-                  }
-            });
+            else{
+                  $.post("backend.php", { opcion: opcion, PrecioAlContado: PrecioAlContado, valorCuotaMensual: valorCuotaMensual, cuotas: cuotas }, function (resultado) {
+                        a = resultado.split("/");
+                        c = a[0];
+                        v = a[1];
+                        error = a[2];
+                        if (error == 1) {
+                              alert("Error en el calculo");
+                        }
+                        else {
+                              //$("#cae").html(c+" %");
+                              c = parseFloat(c);
+                              $("#cae").html(Number(c.toFixed(2)) + " %");
 
-      
+                              $("#valor").html(" $ " + v);
+                        }
+                  });
+            }
+
       });
 
       $("#btnGuardar").click(function () {
